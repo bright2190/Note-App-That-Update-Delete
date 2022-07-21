@@ -1,0 +1,91 @@
+*{
+    margin: auto;
+    padding: auto;
+}
+
+body{
+    background: linear-gradient(to right, orange, rgba(23, 136, 189, 0.452));
+}
+form{
+    border:2px solid rgb(41, 197, 137);
+}
+.section_head{
+    display:inline;
+    margin:0 0 5px 30px;
+}
+fig img{
+    margin: 10px 30px 5px 0;
+}
+button a, .section_head button{
+    text-decoration: none;
+    float: right;
+}
+.section_head button{
+    margin:30px 30px 10px 0;
+}
+#note{
+    text-align: center;
+}
+.paragraph{
+    border: 1px groove black;
+    color: black;
+    background: linear-gradient(to right, grey, white);
+    margin: 0 400px 0 400px;
+}
+#clock_div{
+    float:right;
+    margin-right: 30px;
+}
+.buttons button{
+    margin: 0 200px 0 200px;
+}
+#inner_settings_id, #timeInfo{
+    display: none;
+    cursor: pointer;
+}
+#inner_clock_id{
+    border:2px double whitesmoke;
+}
+
+
+/**
+ * Additions
+ */
+
+.form-group:nth-child(2), .form-group:last-child{
+    margin-top: 30px;
+}
+
+button.save_button{
+    height: 40px;
+    width: 200px;
+    background: green;
+    color: white;
+    outline: none;
+
+}
+
+.save_note_item{
+    margin-top: 30px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.save_note_item:last-child{
+    margin-bottom: 50px;
+
+
+}
+.wrapper{
+    width: 100%;
+}
+
+input[type='text']{
+    height: 40px;
+    width: 600px;
+}
+
+/*.update_form_class{
+   
+}

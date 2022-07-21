@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta lang="eng">
+        <meta name="viewport" content="width=device-width">
+        <meta name="noteApp" description="note taking app">
+        <link rel="styleSheet" type='text/css' href='./css/note.css'>
+        <title>Create New | Notex</title>
+    </head>
+    <body>
+      <div class='wrapper'>
+        
+        <form action="" method="">
+            <div class="section_head">
+                <fig>
+                    <img src="./image/book (1).jpg" width="85px" height="57px" alt="book_logo">
+                </fig>
+                <button type='button' onclick="location.href='note.html'">Back</button>
+            </div>
+
+            <div class='save_note_item'>
+               <form>
+                  <div class="form-group">
+                    <label>Note Title</label>
+                    <input type="text" placeholder="Title" id='note_title_id'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Note Content</label>
+                    <textarea cols="73" rows="20" placeholder="Enter Note Content" id='note_content_id'></textarea>
+                  </div>
+
+                   <div class="form-group">
+                    <button type='button' class='save_button' id='save_button_id'>Save Note</button>
+                    <span id='save_note_info_id'></span>
+                  </div>
+
+
+               </form>  
+            </div>
+
+      
+            <footer></footer>
+        </form>
+
+      </div>
+        
+        <script>
+            const save_button_id = document.getElementById("save_button_id");
+            
+            //once the save button is clicked
+            save_button_id.addEventListener("click", function(){
+
+                let title = document.getElementById("note_title_id").value;
+                let content = document.getElementById("note_content_id").value;
+
+                title = title.trim();
+                content = content.trim();
+
+                if(title.length == 0 || content.length == 0){
+                  //the user did not enter anything
+                  alert("Please enter title and content");
+                }else{
+
+                  //save the note..
+                  //setup a note object
+                  //add the date timestamp
+                  const date = new Date();
+                  const date_created = date.getTime();
+                  let note = {
+                      'title': title,
+                      'content': content,
+                      'date_created': date_created,
+                      'date_updated': date_created,
+                      'author': null
+                  }
+
+                  note = JSON.stringify(note);
+
+                  //call the save_note() function
+                  save_note(note);
+
+
+
+                }
+
+
+            })
+
+
+
+            function save_note(note){
+
+              //check notes from localStorage
+              let notes = localStorage.getItem("notes");
+
+              if(notes == null || notes == undefined){
+
+                let notes = [];
+
+                notes.push(note);
+
+                notes = JSON.stringify(notes);
+
+                //there is no note yet
+                localStorage.setItem("notes", notes);
+
+                //inform the user
+                document.getElementById("save_note_info_id").innerHTML = "<small>Your First Note Saved!</small>";
+
+
+              }else{
+
+                  //maybe there is note..
+                  notes = JSON.parse(notes);
+
+                  //notes is an array
+                  if(notes.length == 0){
+                    //there are no notes..
+                    notes.push(note);
+                    //inform the user
+                    notes = JSON.stringify(notes);
+                    localStorage.setItem("notes", notes);
+                    document.getElementById("save_note_info_id").innerHTML = "<small>Note Saved!</small>";
+                  }else{
+
+                    //there is note..
+                    notes.push(note);
+
+                    notes = JSON.stringify(notes);
+
+                    localStorage.setItem("notes", notes);      
+
+                    //inform the user
+                    document.getElementById("save_note_info_id").innerHTML = "<small>Note Saved!</small>";
+
+                  }
+
+              }
+
+
+            }
+        </script>
+    </body>
+</html>
